@@ -1,59 +1,82 @@
-<p id="notice"><%= notice %></p>
+  <div class="box-inner">
+    <div class="box-header well">
+      <h2>Customer Profile</h2>
+    </div>
 
-<p>
+    <div class="box-content">
+    <fieldset>
+  <div class="row">
+    <div class="col-sm-8 col-sm-offset-1">
+        <div class="form-group">
+  <div class="col-md-4">
+  <strong>Customer Number:</strong>
+  <%= @customer.customer_number %>
+</div>
+
+  <div class="col-md-4">
   <strong>Fullname:</strong>
   <%= @customer.fullname %>
-</p>
+</div>
 
-<p>
-  <strong>Customer number:</strong>
-  <%= @customer.customer_number %>
-</p>
-
-<p>
+  <div class="col-md-4">
   <strong>Mobile no:</strong>
   <%= @customer.mobile_no %>
-</p>
+</div>
 
-<p>
+  <div class="col-md-4">
   <strong>Phone no:</strong>
   <%= @customer.phone_no %>
-</p>
+</div>
 
-<p>
+  <div class="col-md-4">
   <strong>Email:</strong>
   <%= @customer.email %>
-</p>
+</div>
 
+  <div class="col-md-4">
+  <strong>Kyc:</strong>
+  <%= @customer.kyc %>
+</div>
 
-<p>
+  <div class="col-md-4">
   <strong>Date:</strong>
   <%= @customer.date %>
-</p>
+</div>
 
-<p>
+  <div class="col-md-4">
   <strong>Payment mode:</strong>
   <%= @customer.payment_mode %>
-</p>
+</div>
 
-<p>
-  <strong>Status:</strong>
-  <%= @customer.status %>
-</p>
+  <div class="col-md-4">
+  <strong>Plan:</strong>
+  <%= @customer.plan.plan_name %>
+</div>
 
-<p>
-  <strong>Address1:</strong>
-  <%= @customer.address1 %>
-</p>
 
-<p>
-  <strong>Address2:</strong>
-  <%= @customer.address2 %>
-</p>
+  <div class="col-md-4">
+  <strong>Plan Price:</strong>
+  <%= @customer.plan.plan_price %>
+</div>
 
-<p>
-  <strong>Pincode:</strong>
-  <%= @customer.pincode %>
-</p>
+</fieldset>
+</table>
+ </fieldset>
+ </div>
+ </div>
+ </div>
+ </div>
 
-<%= link_to 'Back', customers_path %>
+
+ <br>
+
+ <% payment_form_for_payu 'gtKFFx ', 'eCwWELxi',
+            :txnid => 'lkwqepkl wqe',
+            :amount => @customer.plan.plan_price.to_s,
+            :productinfo => 'Fees Payment',
+            :firstname => @customer_fullname,
+            :email => @customer.email,
+            :phone =>  @customer.phone_no,
+            :surl => 'http://' + 'localhost' + ':3000/payu_callback',
+            :furl => 'http://' + "localhost" + ':3000/payu_callback',
+            :html => { :id => 'payment-form' } %>

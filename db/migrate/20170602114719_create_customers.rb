@@ -14,6 +14,12 @@ class CreateCustomers < ActiveRecord::Migration[5.0]
       t.string :customer_number
       t.string :pincode
       t.references :plan
+       t.float :amount
+       t.float :paid_amount
+      t.datetime :paid_at
+      t.string :status
+      t.string :card_name
+      t.string :ip_address
       t.timestamps
     end
   end

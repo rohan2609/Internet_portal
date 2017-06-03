@@ -20,5 +20,6 @@ Rails.application.routes.draw do
       get :contact
     end
   end
+  match '/payu_callback' => 'customers#payu_return', :via => [:get, :post], :as => 'payments_payu_return'
   root 'home#index'
 end
