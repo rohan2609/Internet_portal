@@ -1,0 +1,2 @@
+module OfflinePaymentHistoriesHelper
+end

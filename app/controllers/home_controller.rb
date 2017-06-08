@@ -1,5 +1,19 @@
 class HomeController < ApplicationController
   def index
+    @message = Home.new
+  end
+
+  def create
+
+    @message = Home.new(home_params)
+
+    if @message.valid?
+      MessageMailer.new_message(@message).deliver_now
+      flash.now[:notice] = "Your messages has been sent."
+      else
+      flash.now[:error] = "An error occurred while delivering this message."    
+    render :new
+    end
   end
 
   def home_1
@@ -34,4 +48,10 @@ class HomeController < ApplicationController
 
   def contact
   end
+
+private
+
+def home_params
+params.require(:home).permit!
+end
 end

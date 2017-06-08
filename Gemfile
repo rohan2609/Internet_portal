@@ -5,7 +5,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-
+gem "active_admin_import" 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.2'
 # Use postgresql as the database for Active Record
@@ -27,7 +27,13 @@ gem 'pry-byebug'
 
 gem 'activemerchant'
 gem 'payuindia'
-gem 'active_skin'
+#gem 'active_skin'
+gem 'active_admin_theme'
+gem 'imagemagick-identify', '~> 0.0.1'
+gem 'mail_form'
+gem 'simple_form'
+#gem 'bootstrap-sass'
+#gem 'active_bootstrap_skin'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

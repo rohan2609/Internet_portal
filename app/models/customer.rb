@@ -1,5 +1,6 @@
 class Customer < ApplicationRecord
   belongs_to :plan
+  belongs_to :payment
    validates :mobile_no, numericality: { only_integer: true }, length: \
   { minimum: 6, maximum: 11 }, allow_blank: true
    validates :phone_no, numericality: { only_integer: true }, length: \
@@ -9,10 +10,31 @@ class Customer < ApplicationRecord
   { with: /\A[a-zA-Z0-9._-]+@([a-zA-Z0-9]+\.)+[a-zA-Z]{2,4}+\z/ }
     validates :address1, length: { in: 1..50 }, allow_blank: true
     validates :address2, length: { in: 1..50 }, allow_blank: true
+
+has_attached_file :kyc, styles: { medium: "300x300>", thumb: "100x100>" }  
+  
+#validates_attachment :kyc, kyc_content_type: { content_type: ["image/jpg", "image/jpeg","image/png"] }
+#validates_attachment_content_type :kyc, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
+validates_attachment_content_type :kyc, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
+
 after_save :create_user_account
+
+  before_create :set_access_token
 
 
 private
+
+ def set_access_token
+    self.access_token = generate_token
+  end
+
+  def generate_token
+    loop do
+      token = SecureRandom.hex(10)
+      break token unless Customer.where(access_token: token).exists?
+      Customer.create!(access_token: token)
+    end
+  end
 
  def create_user_account
     user = User.new do |u|
@@ -25,4 +47,3 @@ private
 
 end
 
-  

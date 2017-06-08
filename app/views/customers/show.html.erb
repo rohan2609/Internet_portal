@@ -1,77 +1,70 @@
-  <div class="box-inner">
-    <div class="box-header well">
-      <h2>Customer Profile</h2>
-    </div>
-
-    <div class="box-content">
-    <fieldset>
-  <div class="row">
-    <div class="col-sm-8 col-sm-offset-1">
-        <div class="form-group">
-  <div class="col-md-4">
-  <strong>Customer Number:</strong>
-  <%= @customer.customer_number %>
-</div>
-
-  <div class="col-md-4">
-  <strong>Fullname:</strong>
-  <%= @customer.fullname %>
-</div>
-
-  <div class="col-md-4">
-  <strong>Mobile no:</strong>
-  <%= @customer.mobile_no %>
-</div>
-
-  <div class="col-md-4">
-  <strong>Phone no:</strong>
-  <%= @customer.phone_no %>
-</div>
-
-  <div class="col-md-4">
-  <strong>Email:</strong>
-  <%= @customer.email %>
-</div>
-
-  <div class="col-md-4">
-  <strong>Kyc:</strong>
-  <%= @customer.kyc %>
-</div>
-
-  <div class="col-md-4">
-  <strong>Date:</strong>
-  <%= @customer.date %>
-</div>
-
-  <div class="col-md-4">
-  <strong>Payment mode:</strong>
-  <%= @customer.payment_mode %>
-</div>
-
-  <div class="col-md-4">
-  <strong>Plan:</strong>
-  <%= @customer.plan.plan_name %>
-</div>
+    <br/><h3><center>Customer Detail</center></h3><br/>
+    <table cellpadding="5" cellspacing="5" width="700">
+      <tr><th colspan="3" bgcolor="99CCFF" align="left">Customer Profile</th></tr>
+    
+<tr>
+        <td><b>Customer Number:</b></td>
+        <td>:</td>
+        <td><%= @customer.customer_number %></td>
+      </tr>
+      <tr>  
+        <td><b>Fullname</b></td>
+        <td>:</td>
+        <td>  <%= @customer.fullname %></td>
+      </tr>
+      <tr>
+        <td><b>Mobile no</b></td>
+        <td>:</td>
+        <td><%= @customer.mobile_no %></td>
+      </tr>
+      <tr>
+        <td><b>Phone no</b></td>
+        <td>:</td>
+        <td><%= @customer.phone_no %></td>
+      </tr>
+      <tr>
+        <td><b>Email</b></td>
+        <td>:</td>
+        <td><%= @customer.email %></td>
+      </tr>
+       <tr>
+        <td><b>Date</b></td>
+        <td>:</td>
+        <td><%= @customer.date%></td>
+      </tr>
+       
+       <tr>
+        <td><b>Plan</b></td>
+        <td>:</td>
+        <td><%= @customer.plan.plan_name %></td>
+      </tr>
+       <tr>
+        <td><b>Plan Expiry</b></td>
+        <td>:</td>
+        <td><%= @customer.plan_start_date + @customer.plan.no_of_days.to_i.days
+ %></td>
+      </tr>
 
 
-  <div class="col-md-4">
-  <strong>Plan Price:</strong>
-  <%= @customer.plan.plan_price %>
-</div>
+      <tr>
+        <td><b>Plan Price</b></td>
+        <td>:</td>
+        <td><%= @customer.plan.plan_price %>
+        </td>
+      </tr>
 
-</fieldset>
-</table>
- </fieldset>
- </div>
- </div>
- </div>
- </div>
+        <td><b>Payment Mode</b></td>
+        <td>:</td>
+        <td><%= @customer.payment.payment_mode %>
+        </td>
+      </tr>
+    </table>
 
 
  <br>
 
- <% payment_form_for_payu 'gtKFFx ', 'eCwWELxi',
-            :txnid => 'lkwqepkl wqe',
+ <% payment_form_for_payu 'gtKFFx', 'eCwWELxi',
+            :txnid => @customer.access_token,
             :amount => @customer.plan.plan_price.to_s,
             :productinfo => 'Fees Payment',
             :firstname => @customer_fullname,

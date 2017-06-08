@@ -18,7 +18,8 @@
 
 
 
+$skinMainFirstColor: #000000!default;
+$skinMainSecondColor: #0066CC!default;
+$skinBorderWindowColor: #B8BABE!default;
 
-@import "active_skin";
-
-$skinLogo: url("admin_logo.png") no-repeat 0 0;
+@import "wigu/active_admin_theme";

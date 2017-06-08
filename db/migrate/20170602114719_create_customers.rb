@@ -5,21 +5,18 @@ class CreateCustomers < ActiveRecord::Migration[5.0]
       t.string :mobile_no
       t.string :phone_no
       t.string :email
+      t.string :access_token
       t.string :kyc
       t.datetime :date
-      t.string :payment_mode
       t.boolean :status
       t.string :address1
       t.string :address2
       t.string :customer_number
       t.string :pincode
       t.references :plan
-       t.float :amount
-       t.float :paid_amount
-      t.datetime :paid_at
-      t.string :status
-      t.string :card_name
-      t.string :ip_address
+      t.references :payment
+      t.date :plan_start_date
+      t.date :plan_expiry_date
       t.timestamps
     end
   end

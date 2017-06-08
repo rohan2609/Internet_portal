@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Offline Payment Histories</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Customer</th>
+      <th>Plan</th>
+      <th>Cash</th>
+      <th>Check</th>
+      <th>Bank name</th>
+      <th>Check number</th>
+      <th>Amount paid</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @offline_payment_histories.each do |offline_payment_history| %>
+      <tr>
+        <td><%= offline_payment_history.customer %></td>
+        <td><%= offline_payment_history.plan %></td>
+        <td><%= offline_payment_history.cash %></td>
+        <td><%= offline_payment_history.check %></td>
+        <td><%= offline_payment_history.bank_name %></td>
+        <td><%= offline_payment_history.check_number %></td>
+        <td><%= offline_payment_history.amount_paid %></td>
+        <td><%= link_to 'Show', offline_payment_history %></td>
+        <td><%= link_to 'Edit', edit_offline_payment_history_path(offline_payment_history) %></td>
+        <td><%= link_to 'Destroy', offline_payment_history, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Offline Payment History', new_offline_payment_history_path %>

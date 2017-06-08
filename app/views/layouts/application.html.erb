@@ -12,7 +12,14 @@
   <div id="user_nav">
   <% if user_signed_in? %>
     Signed in as <%= current_user.email %>. Not you?
-   <%= link_to "Sign out",destroy_user_session_path, :method => :delete %>
+
+            <ul class="nav navbar-nav navbar-right">
+            <li class="active"><a> <%= link_to "Sign out",destroy_user_session_path, :method => :delete, class: "btn btn-danger" %></a></li>
+            
+            </ul>
+
+    </div>
+ 
   <% else %>
   
   <% end %>

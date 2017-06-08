@@ -1,5 +1,5 @@
 ActiveAdmin.register Plan do
-permit_params :plan_name, :plan_price, :plan_start_date ,:plan_expiry_date,:speed
+permit_params :plan_name, :plan_price,:speed,:no_of_days
 # or
 #
 # permit_params do
@@ -13,8 +13,7 @@ form do |f|
       f.input :plan_name
       f.input :plan_price
       f.input :speed
-      f.input :plan_start_date, as: :datepicker, datepicker_options: {dateFormat: 'dd/mm/yy'}
-      f.input :plan_expiry_date, as: :datepicker, datepicker_options: {dateFormat: 'dd/mm/yy'}
+      f.input :no_of_days, :as =>:select, :collection => ['30', '60', '90','180', '360']
     	
      
   end
@@ -22,3 +21,7 @@ form do |f|
   f.actions
 end
 end
+
+
+
+      

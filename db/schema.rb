@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170602123949) do
+ActiveRecord::Schema.define(version: 20170608102351) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -43,33 +43,113 @@ ActiveRecord::Schema.define(version: 20170602123949) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
+  create_table "contactforms", force: :cascade do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "contact"
+    t.string   "message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "contacts", force: :cascade do |t|
+    t.string   "name"
+    t.string   "phone"
+    t.string   "email"
+    t.string   "message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "customers", force: :cascade do |t|
     t.string   "fullname"
     t.string   "mobile_no"
     t.string   "phone_no"
     t.string   "email"
+    t.string   "access_token"
     t.string   "kyc"
     t.datetime "date"
-    t.string   "payment_mode"
     t.boolean  "status"
     t.string   "address1"
     t.string   "address2"
     t.string   "customer_number"
     t.string   "pincode"
     t.integer  "plan_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.integer  "payment_id"
+    t.date     "plan_start_date"
+    t.date     "plan_expiry_date"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.string   "kyc_file_name"
+    t.string   "kyc_content_type"
+    t.integer  "kyc_file_size"
+    t.datetime "kyc_updated_at"
+    t.index ["payment_id"], name: "index_customers_on_payment_id"
     t.index ["plan_id"], name: "index_customers_on_plan_id"
+  end
+
+  create_table "homes", force: :cascade do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "contact_no"
+    t.string   "message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "offline_payment_histories", force: :cascade do |t|
+    t.integer  "customer_id"
+    t.integer  "plan_id"
+    t.integer  "offline_payment_id"
+    t.string   "cash"
+    t.string   "check"
+    t.string   "bank_name"
+    t.string   "check_number"
+    t.string   "amount_paid"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.index ["customer_id"], name: "index_offline_payment_histories_on_customer_id"
+    t.index ["offline_payment_id"], name: "index_offline_payment_histories_on_offline_payment_id"
+    t.index ["plan_id"], name: "index_offline_payment_histories_on_plan_id"
+  end
+
+  create_table "offline_payments", force: :cascade do |t|
+    t.string   "cash"
+    t.string   "check"
+    t.integer  "customer_id"
+    t.integer  "plan_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["customer_id"], name: "index_offline_payments_on_customer_id"
+    t.index ["plan_id"], name: "index_offline_payments_on_plan_id"
+  end
+
+  create_table "payments", force: :cascade do |t|
+    t.string   "mihpayid"
+    t.string   "txnid"
+    t.string   "status"
+    t.string   "unmappedstatus"
+    t.string   "amount"
+    t.string   "cardCategory"
+    t.string   "email"
+    t.string   "name_on_card"
+    t.string   "issuing_bank"
+    t.boolean  "payment_mode"
+    t.integer  "customer_id"
+    t.integer  "plan_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.index ["customer_id"], name: "index_payments_on_customer_id"
+    t.index ["plan_id"], name: "index_payments_on_plan_id"
   end
 
   create_table "plans", force: :cascade do |t|
     t.string   "plan_name"
     t.string   "plan_price"
-    t.date     "plan_start_date"
-    t.date     "plan_expiry_date"
+    t.string   "no_of_days"
     t.string   "speed"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "user_customers", force: :cascade do |t|
