@@ -5,20 +5,13 @@ class Customer < ApplicationRecord
   { minimum: 6, maximum: 11 }, allow_blank: true
    validates :phone_no, numericality: { only_integer: true }, length: \
   { minimum: 6, maximum: 11 }, allow_blank: true
- 
-   validates :email, presence: true, format: \
-  { with: /\A[a-zA-Z0-9._-]+@([a-zA-Z0-9]+\.)+[a-zA-Z]{2,4}+\z/ }
-    validates :address1, length: { in: 1..50 }, allow_blank: true
+   validates :address1, length: { in: 1..50 }, allow_blank: true
     validates :address2, length: { in: 1..50 }, allow_blank: true
-
-has_attached_file :kyc, styles: { medium: "300x300>", thumb: "100x100>" }  
-  
-#validates_attachment :kyc, kyc_content_type: { content_type: ["image/jpg", "image/jpeg","image/png"] }
-#validates_attachment_content_type :kyc, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
-validates_attachment_content_type :kyc, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
-
-after_save :create_user_account
-
+  attr_accessor :file,:customer_id
+  mount_uploader :file   
+  has_many :customer_attachments, dependent: :destroy
+  accepts_nested_attributes_for :customer_attachments
+  after_save :create_user_account
   before_create :set_access_token
 
 

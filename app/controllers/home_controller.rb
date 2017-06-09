@@ -47,6 +47,7 @@ class HomeController < ApplicationController
   end
 
   def contact
+    @message = Home.new
   end
 
 private

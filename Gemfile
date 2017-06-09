@@ -4,7 +4,7 @@ git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
   "https://github.com/#{repo_name}.git"
 end
-
+gem 'carrierwave'
 gem "active_admin_import" 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.2'
@@ -24,7 +24,7 @@ gem 'activeadmin'
 gem 'devise'
 gem 'paperclip'
 gem 'pry-byebug'
-
+gem 'formtastic'
 gem 'activemerchant'
 gem 'payuindia'
 #gem 'active_skin'

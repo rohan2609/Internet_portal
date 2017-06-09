@@ -12,8 +12,7 @@ active_admin_import
 #   permitted << :other if params[:action] == 'create' && current_user.admin?
 #   permitted
 # end
-permit_params :fullname,:payment_id, :mobile_no, :phone_no, :email,:pincode, :kyc, :date, :plan_id,:plan_start_date,:plan_expiry_date,:customer_number,:address1,:address2,:status
-
+permit_params :fullname,:customer,:file,:payment_id, :mobile_no,:utf8, :authenticity_token, :commit ,:phone_no, :email,:pincode, :kyc, :date, :plan_id,:plan_start_date,:plan_expiry_date,:customer_number,:address1,:address2,:status,customer_attachments_attributes: [:customer_id,file: []]
 # permit_params do
 #   permitted = [:permitted, :attributes]
 #   permitted << :other if params[:action] == 'create' && current_user.admin?
@@ -37,7 +36,9 @@ form do |f|
       f.input :phone_no
       f.input :email
       f.input :status, :as => :boolean
-      f.input :kyc, :as => :file,input_html: { multiple: true}
+       f.has_many :customer_attachments do |q|
+       q.input :file, :as => :file,input_html: { multiple: true},name: "customer_attachments[file][]"
+    end   
       f.input :payment_id, :collection => Payment.all.map{|p| [p.payment_mode,p.id]} 
 
     end
@@ -51,6 +52,7 @@ form do |f|
   column :mobile_no
   column :status
   column :email
+  
   actions defaults: false do |customer|
    a "View", href: admin_customer_path(customer)
    item "Edit", edit_admin_customer_path(customer)
@@ -62,13 +64,45 @@ show do
   attributes_table do
     row :customer_number
     row :fullname
+  
     row :plan_id, :as => :select, :collection => Plan.all.map{|p| [p.plan_name,p.id]}
-    row :plan_expiry_date, :input_html => {:value =>  customer.plan_start_date + customer.plan.no_of_days.to_i.days}
-    row :status
-    row :kyc do
-        customer.kyc? ? image_tag(customer.kyc.url, height: '100') : content_tag(:span, "No photo yet")
+       row :status
+
+
+div :class => "panel" do
+          h3 "Customer Attachment"
+          binding.pry
+          if customer.customer_attachments
+            div :class => "panel_contents" do
+              div :class => "attributes_table" do
+                table do
+                  tr do
+                    th do
+                      "Customer Attachment"
+                    end
+                  end
+                  tbody do
+                    customer.customer_attachments.each do |p|
+                      tr do
+                        td do
+                          
+         link_to p.file_urls                                                                                                                     
+    
+                        end
+                      end
+                    end
+                  end
+                end
+              end
+            end
+          else
+            h3 "No Attachment available"
+          end
+        end
+  
 end
+
 end
-end
+
 
 end

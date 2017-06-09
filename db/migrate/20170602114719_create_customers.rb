@@ -6,7 +6,8 @@ class CreateCustomers < ActiveRecord::Migration[5.0]
       t.string :phone_no
       t.string :email
       t.string :access_token
-      t.string :kyc
+      t.string :file
+      t.string :file_file_name
       t.datetime :date
       t.boolean :status
       t.string :address1

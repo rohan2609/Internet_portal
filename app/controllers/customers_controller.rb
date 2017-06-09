@@ -1,6 +1,26 @@
 class CustomersController < InheritedResources::Base
 skip_before_action :verify_authenticity_token, :only => [:payu_return]
 
+def new
+  @customer = Customer.new
+  @customer_attachment = @customer.customer_attachments.build
+end
+
+def create
+  @customer = Customer.new(customer_params)
+    @customer.save
+        redirect_to customers_path
+         if  params[:customer_attachments].present?
+       params[:customer_attachments]['file'].each do |a|
+        @customer_attachment = @customer.customer_attachments.create!(:file=> a)
+      end
+    end
+end
+     def show
+        @customer = Customer.find(params[:id])
+        @customer_attachments = @customer.customer_attachments.all
+    end
+
 	 def payu_return
     binding.pry
     begin
@@ -31,8 +51,9 @@ skip_before_action :verify_authenticity_token, :only => [:payu_return]
     end
   end
   private
+
     def customer_params
-      params.require(:customer).permit(:fullname, :dob, :mobile_no, :phone_no, :email, :kyc, :date, :payment_mode, :status, :address1, :address2, :customer_number, :pincode,:access_token)
+      params.require(:customer).permit( :fullname,:file,:payment_id, :mobile_no,:utf8, :authenticity_token, :customers, :commit ,:phone_no, :email,:pincode, :kyc, :date, :plan_id,:plan_start_date,:plan_expiry_date,:customer_number,:address1,:address2,:status,customer_attachments_attributes: [:customer_id,file:[]])
     end
 end
 

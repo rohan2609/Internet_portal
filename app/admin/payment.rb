@@ -19,4 +19,15 @@ form do |f|
     end
     f.actions
   end
+
+
+   index do
+  selectable_column
+  column :payment_mode
+  actions defaults: false do |customer|
+   a "View", href: admin_payment_path(customer)
+   item "Edit", edit_admin_payment_path(customer)
+  
+ end
+end
 end

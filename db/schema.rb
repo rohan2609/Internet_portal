@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170608102351) do
+ActiveRecord::Schema.define(version: 20170609090426) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -61,13 +61,22 @@ ActiveRecord::Schema.define(version: 20170608102351) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "customer_attachments", force: :cascade do |t|
+    t.integer  "customer_id"
+    t.string   "file"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["customer_id"], name: "index_customer_attachments_on_customer_id"
+  end
+
   create_table "customers", force: :cascade do |t|
     t.string   "fullname"
     t.string   "mobile_no"
     t.string   "phone_no"
     t.string   "email"
     t.string   "access_token"
-    t.string   "kyc"
+    t.string   "file"
+    t.string   "file_file_name"
     t.datetime "date"
     t.boolean  "status"
     t.string   "address1"
@@ -78,12 +87,12 @@ ActiveRecord::Schema.define(version: 20170608102351) do
     t.integer  "payment_id"
     t.date     "plan_start_date"
     t.date     "plan_expiry_date"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
-    t.string   "kyc_file_name"
-    t.string   "kyc_content_type"
-    t.integer  "kyc_file_size"
-    t.datetime "kyc_updated_at"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.string   "file_filename"
+    t.string   "file_content_type"
+    t.integer  "file_file_size"
+    t.datetime "file_updated_at"
     t.index ["payment_id"], name: "index_customers_on_payment_id"
     t.index ["plan_id"], name: "index_customers_on_plan_id"
   end
@@ -134,7 +143,7 @@ ActiveRecord::Schema.define(version: 20170608102351) do
     t.string   "email"
     t.string   "name_on_card"
     t.string   "issuing_bank"
-    t.boolean  "payment_mode"
+    t.string   "payment_mode"
     t.integer  "customer_id"
     t.integer  "plan_id"
     t.datetime "created_at",     null: false

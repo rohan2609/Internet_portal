@@ -10,7 +10,7 @@ class CreatePayments < ActiveRecord::Migration[5.0]
       t.string :email
       t.string :name_on_card
       t.string :issuing_bank
-      t.boolean :payment_mode
+      t.string :payment_mode
       t.references :customer, foreign_key: true
       t.references :plan, foreign_key: true
 

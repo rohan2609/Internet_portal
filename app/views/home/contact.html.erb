@@ -349,37 +349,35 @@
                            <p>This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat.</p>
                         </div>
                         <!-- //title -->
-                        <div class="contact-form-6 padding-top-50">
-                           <form action="#" method="get">
-                              <div class="section-contact">
-                                 <div class="row contant-inner">
-                                    <div class="col-md-12">
-                                       <span class="wpcf7-form-control-wrap your-name"><input type="text" name="your-name" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false" placeholder="Name*"></span>
-                                    </div>
-                                    <div class="col-md-12">
-                                       <span class="wpcf7-form-control-wrap number-339"><input type="number" name="number-339" value="" class="wpcf7-form-control wpcf7-number wpcf7-validates-as-number" aria-invalid="false" placeholder="Phone*"></span>
-                                    </div>
-                                    <div class="col-md-12">
-                                       <span class="wpcf7-form-control-wrap your-email"><input type="email" name="your-email" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email" aria-required="true" aria-invalid="false" placeholder="Email*"></span>
-                                    </div>
-                           
-                                 <p><span class="wpcf7-form-control-wrap your-message"><textarea name="your-message" cols="40" rows="10" class="wpcf7-form-control wpcf7-textarea" aria-invalid="false" placeholder="Your Message"></textarea></span></p>
-                                 <p><input type="submit" value="Send" class="wpcf7-form-control wpcf7-submit btn btn-primary btn-outline"><span class="ajax-loader"></span></p>
-                              </div>
-                              <div class="wpcf7-response-output wpcf7-display-none"></div>
-                           </form>
-                        </div>
-                     </div>
-                     <!-- //col-sm-7 -->
-                     <div class="col-sm-4 pull-right">
-                        <div class="kc-elm kc-css-439636 kc_col-sm-5 kc_column_inner kc_col-sm-5 margin-top-60">
-                           <div class="kc_wrapper kc-col-inner-container">
-                              <div class="kc_single_image">
-                                 <figure><img src="/assets/imgg.jpg"  alt=""></figure>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
+                          <%= form_for :home,url:{action:'create',controller:'home'} do |c|%>
+         <div class="errors"><ul class="errors"></ul></div>
+         <fieldset>           
+          <div class="form-group">
+             <div class="col-md-3"><b>Name:</b></div>
+               <%=c.text_field :name,placeholder: "Name", class: "form-control",style:"width:250px"%>
+           </div>
+           
+           <div class="form-group">
+             <div class="col-md-3"><b>Email:</b></div>
+             <%=c.text_field :email, placeholder: "Email", class: "form-control",style:"width:250px"%>
+           </div>            
+           <div class="form-group">
+             <div class="col-md-3"><b>Contact</b></div>
+             <%=c.text_field :contact_no, placeholder: "Contact", class: "form-control",style:"width:250px"%>
+           </div>            
+           <div class="form-group">
+             <div class="col-md-3"><b>Message</b></div>
+             <%=c.text_area :message, placeholder: "Message", class: "form-control",style:"width:250px"%>
+           </div>
+ 
+           <div class="row">
+             <center>
+               <%= c.submit 'Submit', class: "btn btn-primary"%>
+             </center>
+           </div>
+         </fieldset>
+       <%end%>  
+                     
                   </div>
                </div>
             </div>
