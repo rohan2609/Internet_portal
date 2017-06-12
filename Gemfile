@@ -27,11 +27,17 @@ gem 'pry-byebug'
 gem 'formtastic'
 gem 'activemerchant'
 gem 'payuindia'
-#gem 'active_skin'
+gem 'active_skin'
 gem 'active_admin_theme'
 gem 'imagemagick-identify', '~> 0.0.1'
 gem 'mail_form'
 gem 'simple_form'
+gem "active_admin_multi_upload"
+
+group :production do
+  gem 'sqlite3'
+end
+
 #gem 'bootstrap-sass'
 #gem 'active_bootstrap_skin'
 

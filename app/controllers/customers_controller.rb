@@ -25,10 +25,10 @@ end
     binding.pry
     begin
       notification = PayuIndia::Notification.new(request.query_string, options = {:key => 'fB7m8s', :salt => 'eRis5Chv', :params => params})    
-      @payment = Payment.find(params[:access_token])  # invoice is nothing but the payment_id
-      if notification.acknowledge
+      @payment = Payment.find_or_create_by(txnid: params[:access_token])  # invoice is nothing but the payment_id
+      if notification.params["status"] == "success"
         begin
-          if notification.complete?
+          if notification.params["status"] == "success"
             @payment.status = params[:status]
             @payment.paid_at = params[:addedon]
             @payment.card_num = params[:cardnum]
@@ -47,7 +47,7 @@ end
       end
     rescue
       flash[:notice] = "something goes wrong ! please try again after some times!!!"
-      redirect_to customer_path
+      redirect_to customer_path(current_user)
     end
   end
   private

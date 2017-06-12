@@ -1,4 +1,7 @@
 ActiveAdmin.register Customer do
+
+ filter :fullname, :label => 'Customer Name', :as => :select, if: proc{Customer.all.map { |c| [c.fullname,c.id]  }}
+permit_params picture_ids: []
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
@@ -39,8 +42,6 @@ form do |f|
        f.has_many :customer_attachments do |q|
        q.input :file, :as => :file,input_html: { multiple: true},name: "customer_attachments[file][]"
     end   
-      f.input :payment_id, :collection => Payment.all.map{|p| [p.payment_mode,p.id]} 
-
     end
     f.actions
   end
@@ -64,6 +65,9 @@ show do
   attributes_table do
     row :customer_number
     row :fullname
+    row :address1
+    row :address2
+    row :mobile_no
   
     row :plan_id, :as => :select, :collection => Plan.all.map{|p| [p.plan_name,p.id]}
        row :status
@@ -71,7 +75,7 @@ show do
 
 div :class => "panel" do
           h3 "Customer Attachment"
-          binding.pry
+        
           if customer.customer_attachments
             div :class => "panel_contents" do
               div :class => "attributes_table" do

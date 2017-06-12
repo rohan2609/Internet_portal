@@ -1,4 +1,8 @@
 ActiveAdmin.register Plan do
+
+ filter :plan_name, :label => 'Plan Name', :as => :select, if: proc{Plan.all.map { |c| [c.plan_name]  }}
+ filter :speed, :label => 'Plan Speed', :as => :select, if: proc{Plan.all.map {|c| [c.plan_name]}}
+ filter :no_of_days, :label => 'Plan Validation', :as => :select, if: proc{Plan.all.map {|c| [c.plan_name]}}
 permit_params :plan_name, :plan_price,:speed,:no_of_days
 # or
 #

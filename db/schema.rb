@@ -43,24 +43,6 @@ ActiveRecord::Schema.define(version: 20170609090426) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
-  create_table "contactforms", force: :cascade do |t|
-    t.string   "name"
-    t.string   "email"
-    t.string   "contact"
-    t.string   "message"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "contacts", force: :cascade do |t|
-    t.string   "name"
-    t.string   "phone"
-    t.string   "email"
-    t.string   "message"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "customer_attachments", force: :cascade do |t|
     t.integer  "customer_id"
     t.string   "file"
@@ -89,6 +71,11 @@ ActiveRecord::Schema.define(version: 20170609090426) do
     t.date     "plan_expiry_date"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
+    t.string   "kyc_file_name"
+    t.string   "kyc_content_type"
+    t.integer  "kyc_file_size"
+    t.datetime "kyc_updated_at"
+    t.string   "image"
     t.string   "file_filename"
     t.string   "file_content_type"
     t.integer  "file_file_size"
@@ -102,8 +89,8 @@ ActiveRecord::Schema.define(version: 20170609090426) do
     t.string   "email"
     t.string   "contact_no"
     t.string   "message"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "offline_payment_histories", force: :cascade do |t|
