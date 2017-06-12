@@ -9,7 +9,6 @@ gem "active_admin_import"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.2'
 # Use postgresql as the database for Active Record
-gem 'sqlite3'
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
 # Use SCSS for stylesheets
@@ -34,7 +33,11 @@ gem 'mail_form'
 gem 'simple_form'
 gem "active_admin_multi_upload"
 
-group :production do
+group :test, :production do
+  gem 'pg'
+end
+
+group :development do
   gem 'sqlite3'
 end
 
