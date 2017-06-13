@@ -1,10 +1,15 @@
 Rails.application.routes.draw do
   resources :payments
+
   resources :offline_payment_histories
   resources :offline_payments
   devise_for :users
   resources :plans
-  resources :customers
+  resources :customers do 
+    member do
+      get :confirm_to_pay
+    end
+  end
 
 
   devise_for :admin_users, ActiveAdmin::Devise.config

@@ -1,6 +1,6 @@
 class Customer < ApplicationRecord
   belongs_to :plan
-  belongs_to :payment
+  has_many :payments
    validates :mobile_no, numericality: { only_integer: true }, length: \
   { minimum: 6, maximum: 11 }, allow_blank: true
    validates :phone_no, numericality: { only_integer: true }, length: \
@@ -25,7 +25,7 @@ private
     loop do
       token = SecureRandom.hex(10)
       break token unless Customer.where(access_token: token).exists?
-      Customer.create!(access_token: token)
+      Customer.update(access_token: token)
     end
   end
 

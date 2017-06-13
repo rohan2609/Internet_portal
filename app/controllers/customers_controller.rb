@@ -6,6 +6,13 @@ def new
   @customer_attachment = @customer.customer_attachments.build
 end
 
+def update
+  @customer = Customer.find(params[:id])
+  @customer.update(customer_params)
+  redirect_to customers_path
+end
+
+
 def create
   @customer = Customer.new(customer_params)
     @customer.save
@@ -21,11 +28,23 @@ end
         @customer_attachments = @customer.customer_attachments.all
     end
 
+  def confirm_to_pay
+    @customer = Customer.find(params[:id])
+    payment = @customer.payments.build(
+      txnid: @customer.access_token,
+      plan_id: @customer.plan_id,
+      amount: @customer.try(:plan).try(:plan_price),
+      email: @customer.email,
+      status: 'will send request for payment'
+      )
+    payment.save
+  end
+
 	 def payu_return
     binding.pry
     begin
       notification = PayuIndia::Notification.new(request.query_string, options = {:key => 'fB7m8s', :salt => 'eRis5Chv', :params => params})    
-      @payment = Payment.find_or_create_by(txnid: params[:access_token])  # invoice is nothing but the payment_id
+      @payment = Payment.find_or_create_by(txnid: notification.invoice)  # invoice is nothing but the payment_id
       if notification.params["status"] == "success"
         begin
           if notification.params["status"] == "success"
@@ -34,6 +53,7 @@ end
             @payment.card_num = params[:cardnum]
             @payment.ip = request.remote_ip
             @payment.Payer_id = params[:mihpayid]
+            @payment.save
             flash[:notice] = "Payment Done successfully!!!"
             redirect_to payments_url
           else

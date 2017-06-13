@@ -36,20 +36,19 @@
        <tr>
         <td><b>Plan</b></td>
         <td>:</td>
-        <td><%= @customer.plan.plan_name %></td>
+        <td><%= @customer.try(:plan).try(:plan_name) %></td>
       </tr>
        <tr>
         <td><b>Plan Expiry</b></td>
         <td>:</td>
-        <td><%= @customer.plan_start_date + @customer.plan.no_of_days.to_i.days
- %></td>
+        <td><%= @customer.plan_start_date + @customer.plan.no_of_days.to_i.days if @customer.plan %></td>
       </tr>
 
 
       <tr>
         <td><b>Plan Price</b></td>
         <td>:</td>
-        <td><%= @customer.plan.plan_price %>
+        <td><%= @customer.try(:plan).try(:plan_price) %>
         </td>
       </tr>
 
@@ -60,13 +59,12 @@
 
  <br>
 
- <% payment_form_for_payu 'gtKFFx', 'eCwWELxi',
-            :txnid => @customer.access_token,
-            :amount => @customer.plan.plan_price.to_s,
-            :productinfo => 'Fees Payment',
-            :firstname => @customer_fullname,
-            :email => @customer.email,
-            :phone =>  @customer.phone_no,
-            :surl => 'http://' + 'localhost' + ':3000/payu_callback',
-            :furl => 'http://' + "localhost" + ':3000/payu_callback',
-            :html => { :id => 'payment-form' } %>
+<% if @customer.plan %>
+  <%= link_to 'Confirm to Pay', confirm_to_pay_customer_path(@customer.id) %>
+<% else %>
+   Please create plan first to enable payment button
+<% end%>
+
+
+
+
