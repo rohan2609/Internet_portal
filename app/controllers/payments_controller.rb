@@ -1,7 +1,8 @@
 class PaymentsController < InheritedResources::Base
+  
   # all payment list of this customer
   def index
-    @payments = Payment.all
+    @payments = Payment.all.order('created_at DESC')
   end
   
   private
