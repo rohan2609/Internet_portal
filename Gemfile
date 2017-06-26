@@ -18,7 +18,7 @@ gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 # See https://github.com/rails/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
+gem 'therubyracer', platforms: :ruby
 gem 'activeadmin'
 gem 'devise'
 gem 'paperclip'
@@ -33,13 +33,7 @@ gem 'mail_form'
 gem 'simple_form'
 gem "active_admin_multi_upload"
 
-group :test, :production do
-  gem 'pg'
-end
-
-group :development do
-  gem 'sqlite3'
-end
+gem 'pg'
 
 #gem 'bootstrap-sass'
 #gem 'active_bootstrap_skin'
