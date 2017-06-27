@@ -1,0 +1,2 @@
+module CustomerAttachmentsHelper
+end

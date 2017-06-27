@@ -1,0 +1,70 @@
+    <br/><h3><center>Customer Detail</center></h3><br/>
+    <table cellpadding="5" cellspacing="5" width="700">
+      <tr><th colspan="3" bgcolor="99CCFF" align="left">Customer Profile</th></tr>
+    
+<tr>
+        <td><b>Customer Number:</b></td>
+        <td>:</td>
+        <td><%= @customer.customer_number %></td>
+      </tr>
+      <tr>  
+        <td><b>Fullname</b></td>
+        <td>:</td>
+        <td>  <%= @customer.fullname %></td>
+      </tr>
+      <tr>
+        <td><b>Mobile no</b></td>
+        <td>:</td>
+        <td><%= @customer.mobile_no %></td>
+      </tr>
+      <tr>
+        <td><b>Phone no</b></td>
+        <td>:</td>
+        <td><%= @customer.phone_no %></td>
+      </tr>
+      <tr>
+        <td><b>Email</b></td>
+        <td>:</td>
+        <td><%= @customer.email %></td>
+      </tr>
+       <tr>
+        <td><b>Date</b></td>
+        <td>:</td>
+        <td><%= @customer.date%></td>
+      </tr>
+       
+       <tr>
+        <td><b>Plan</b></td>
+        <td>:</td>
+        <td><%= @customer.try(:plan).try(:plan_name) %></td>
+      </tr>
+       <tr>
+        <td><b>Plan Expiry</b></td>
+        <td>:</td>
+        <td><%= @customer.plan_start_date + @customer.plan.no_of_days.to_i.days if @customer.plan %></td>
+      </tr>
+
+
+      <tr>
+        <td><b>Plan Price</b></td>
+        <td>:</td>
+        <td><%= @customer.try(:plan).try(:plan_price) %>
+        </td>
+      </tr>
+
+        
+      </tr>
+    </table>
+
+
+ <br>
+
+<% if @customer.plan %>
+  <%= link_to 'Confirm to Pay', confirm_to_pay_customer_path(@customer.id) %>
+<% else %>
+   Please create plan first to enable payment button
+<% end%>
+
+
+
+

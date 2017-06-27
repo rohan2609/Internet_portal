@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  customer: one
+  plan: one
+  cash: MyString
+  check: MyString
+  bank_name: MyString
+  check_number: MyString
+  amount_paid: MyString
+
+two:
+  customer: two
+  plan: two
+  cash: MyString
+  check: MyString
+  bank_name: MyString
+  check_number: MyString
+  amount_paid: MyString

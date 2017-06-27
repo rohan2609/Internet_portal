@@ -1,0 +1,59 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Mihpayid:</strong>
+  <%= @payment.mihpayid %>
+</p>
+
+<p>
+  <strong>Txnid:</strong>
+  <%= @payment.txnid %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @payment.status %>
+</p>
+
+<p>
+  <strong>Unmappedstatus:</strong>
+  <%= @payment.unmappedstatus %>
+</p>
+
+<p>
+  <strong>Amount:</strong>
+  <%= @payment.amount %>
+</p>
+
+<p>
+  <strong>Cardcategory:</strong>
+  <%= @payment.cardCategory %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @payment.email %>
+</p>
+
+<p>
+  <strong>Name on card:</strong>
+  <%= @payment.name_on_card %>
+</p>
+
+<p>
+  <strong>Issuing bank:</strong>
+  <%= @payment.issuing_bank %>
+</p>
+
+<p>
+  <strong>Customer:</strong>
+  <%= @payment.customer %>
+</p>
+
+<p>
+  <strong>Plan:</strong>
+  <%= @payment.plan %>
+</p>
+
+<%= link_to 'Edit', edit_payment_path(@payment) %> |
+<%= link_to 'Back', payments_path %>

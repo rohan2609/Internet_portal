@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Customer:</strong>
+  <%= @offline_payment_history.customer %>
+</p>
+
+<p>
+  <strong>Plan:</strong>
+  <%= @offline_payment_history.plan %>
+</p>
+
+<p>
+  <strong>Cash:</strong>
+  <%= @offline_payment_history.cash %>
+</p>
+
+<p>
+  <strong>Check:</strong>
+  <%= @offline_payment_history.check %>
+</p>
+
+<p>
+  <strong>Bank name:</strong>
+  <%= @offline_payment_history.bank_name %>
+</p>
+
+<p>
+  <strong>Check number:</strong>
+  <%= @offline_payment_history.check_number %>
+</p>
+
+<p>
+  <strong>Amount paid:</strong>
+  <%= @offline_payment_history.amount_paid %>
+</p>
+
+<%= link_to 'Edit', edit_offline_payment_history_path(@offline_payment_history) %> |
+<%= link_to 'Back', offline_payment_histories_path %>
