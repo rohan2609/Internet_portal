@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Cash:</strong>
+  <%= @offline_payment.cash %>
+</p>
+
+<p>
+  <strong>Check:</strong>
+  <%= @offline_payment.check %>
+</p>
+
+<p>
+  <strong>Customer:</strong>
+  <%= @offline_payment.customer %>
+</p>
+
+<p>
+  <strong>Plan:</strong>
+  <%= @offline_payment.plan %>
+</p>
+
+<%= link_to 'Edit', edit_offline_payment_path(@offline_payment) %> |
+<%= link_to 'Back', offline_payments_path %>

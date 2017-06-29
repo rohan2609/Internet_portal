@@ -4,14 +4,39 @@ git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
   "https://github.com/#{repo_name}.git"
 end
-
-
+gem 'carrierwave'
+gem "active_admin_import" 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.2'
 # Use postgresql as the database for Active Record
-gem 'pg', '~> 0.18'
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
+# Use SCSS for stylesheets
+gem 'sass-rails', '~> 5.0'
+# Use Uglifier as compressor for JavaScript assets
+gem 'uglifier', '>= 1.3.0'
+# Use CoffeeScript for .coffee assets and views
+gem 'coffee-rails', '~> 4.2'
+# See https://github.com/rails/execjs#readme for more supported runtimes
+gem 'therubyracer', platforms: :ruby
+gem 'activeadmin'
+gem 'devise'
+gem 'paperclip'
+gem 'pry-byebug'
+gem 'formtastic'
+gem 'activemerchant'
+gem 'payuindia'
+gem 'active_skin'
+gem 'active_admin_theme'
+gem 'imagemagick-identify', '~> 0.0.1'
+gem 'mail_form'
+gem 'simple_form'
+gem "active_admin_multi_upload"
+
+gem 'pg'
+
+#gem 'bootstrap-sass'
+#gem 'active_bootstrap_skin'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  mihpayid: MyString
+  txnid: MyString
+  status: MyString
+  unmappedstatus: MyString
+  amount: MyString
+  cardCategory: MyString
+  email: MyString
+  name_on_card: MyString
+  issuing_bank: MyString
+  customer: one
+  plan: one
+
+two:
+  mihpayid: MyString
+  txnid: MyString
+  status: MyString
+  unmappedstatus: MyString
+  amount: MyString
+  cardCategory: MyString
+  email: MyString
+  name_on_card: MyString
+  issuing_bank: MyString
+  customer: two
+  plan: two
