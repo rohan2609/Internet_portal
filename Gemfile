@@ -12,14 +12,6 @@ gem 'rails', '~> 5.0.2'
 gem 'pg', '~> 0.18'
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
-# Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
-# Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 1.3.0'
-# Use CoffeeScript for .coffee assets and views
-gem 'coffee-rails', '~> 4.2'
-# See https://github.com/rails/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -34,6 +26,17 @@ gem 'jbuilder', '~> 2.5'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+
+group :assets do
+  # Use SCSS for stylesheets
+  gem 'sass-rails', '~> 5.0'
+  # Use Uglifier as compressor for JavaScript assets
+  gem 'uglifier', '>= 1.3.0'
+  # Use CoffeeScript for .coffee assets and views
+  gem 'coffee-rails', '~> 4.2'
+  # See https://github.com/rails/execjs#readme for more supported runtimes
+  gem 'therubyracer', platforms: :ruby
+end
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
